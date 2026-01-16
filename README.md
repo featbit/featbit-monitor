@@ -17,11 +17,14 @@ A long-running .NET console application that connects to FeatBit using the .NET 
 ### 2. JavaScript Client Monitor (`src/JsClientMonitor`)
 A long-running Node.js console application that connects to FeatBit using the JavaScript Client SDK. It provides client-side perspective on feature flag behavior.
 
+**Note:** Due to issues with the deprecated `featbit-js-client-sdk` package, this monitor includes a mock mode fallback for demonstration purposes.
+
 **Key Features:**
-- Uses FeatBit JavaScript Client SDK
+- Uses FeatBit JavaScript Client SDK (with mock fallback)
 - Real-time flag monitoring
 - Event-driven flag update notifications
 - Configurable polling intervals
+- Mock mode for testing and demonstration
 
 ### 3. Configuration Changer (`src/ConfigurationChanger`)
 A .NET application that programmatically changes FeatBit toggle configurations. Can run as a one-time job or as a recurring cron-like task.

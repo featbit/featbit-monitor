@@ -6,20 +6,23 @@ Long-running Node.js console application that monitors FeatBit feature flags usi
 
 This application provides a client-side perspective on FeatBit feature flag behavior. It connects to FeatBit using the JavaScript Client SDK and monitors flag values in real-time with event-driven updates.
 
+**Note:** The `featbit-js-client-sdk` package is deprecated and has module resolution issues. This implementation includes a fallback mock mode for demonstration and testing purposes. For production use, consider using the latest FeatBit JavaScript SDK or implementing a REST API-based solution.
+
 ## Features
 
 - **Real-time Monitoring**: Continuously monitors feature flag values
 - **Event-Driven Updates**: Receives immediate notifications on flag changes
 - **Change Detection**: Logs flag value changes with timestamps
-- **Client SDK**: Uses FeatBit's official JavaScript Client SDK
+- **Mock Mode**: Falls back to mock mode if SDK cannot be loaded
+- **Client SDK**: Attempts to use FeatBit's JavaScript Client SDK
 - **Configurable Polling**: Adjustable check intervals
 
 ## Prerequisites
 
 - Node.js 20.x or later
 - npm or yarn
-- Access to a FeatBit instance
-- Valid environment secret from FeatBit
+- Access to a FeatBit instance (or runs in mock mode)
+- Valid environment secret from FeatBit (optional for mock mode)
 
 ## Installation
 
@@ -81,14 +84,20 @@ Configuration:
   Event URI: http://localhost:5100
   Flag Key: test-flag
   User Key: test-user
-FeatBit client initialized successfully.
+Running in MOCK MODE for demonstration purposes.
+
+============================================================
+RUNNING IN MOCK MODE
+This demonstrates the monitoring behavior without a real FeatBit connection.
+Flag values will alternate between mock-value-a and mock-value-b.
+============================================================
 
 Monitoring flag 'test-flag' every 5000ms...
 Press Ctrl+C to exit.
 
-[2026-01-16 14:30:00.123] Flag: 'test-flag' = 'value-a'
-[2026-01-16 14:30:10.234] FLAG UPDATE EVENT received for: test-flag
-[2026-01-16 14:30:10.345] FLAG CHANGED: 'test-flag' = 'value-b' (previous: 'value-a')
+[2026-01-16 14:30:00.123] FLAG CHANGED: 'test-flag' = 'mock-value-a' (previous: '')
+[2026-01-16 14:30:05.234] Flag: 'test-flag' = 'mock-value-a'
+[2026-01-16 14:30:30.345] FLAG CHANGED: 'test-flag' = 'mock-value-b' (previous: 'mock-value-a')
 ```
 
 ## Deployment
@@ -161,7 +170,15 @@ fbClient.on('error', (error) => {
 
 ### SDK Deprecated Warning
 
-The warning about `featbit-js-client-sdk` being deprecated is expected. The package is still functional for monitoring purposes. For production use, check for updated SDK packages.
+The `featbit-js-client-sdk` package is deprecated and has known module resolution issues. The monitor will automatically fall back to mock mode if the SDK cannot be loaded. This mock mode is useful for:
+- Testing the monitoring infrastructure
+- Demonstrating the monitoring behavior
+- Development without a FeatBit instance
+
+For production use with an actual FeatBit instance, consider:
+- Using the latest FeatBit JavaScript SDK (check https://github.com/featbit for updates)
+- Implementing a REST API-based solution
+- Using the .NET Server SDK instead
 
 ### Connection Issues
 - Verify FeatBit service is accessible
