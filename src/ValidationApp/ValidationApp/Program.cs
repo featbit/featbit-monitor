@@ -25,6 +25,8 @@ class MonitorState
 // Main program class
 class Program
 {
+    private const int SimulatedValueCount = 2;
+
     static async Task Main(string[] args)
     {
         Console.WriteLine("FeatBit Validation Application Starting...");
@@ -89,7 +91,7 @@ class Program
             // we'll simulate validation by checking if expected behavior occurs
             // In production, you'd query actual status endpoints
 
-            return (true, $"simulated-value-{DateTime.UtcNow.Ticks % 2}");
+            return (true, $"simulated-value-{DateTime.UtcNow.Ticks % SimulatedValueCount}");
         }
         catch (Exception ex)
         {
