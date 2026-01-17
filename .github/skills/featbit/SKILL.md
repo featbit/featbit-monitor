@@ -31,12 +31,12 @@ It is also super useful when you want to achieve a complex business logic that i
 
 ## List all feature flags
 
-Use `[list feature flags script](./list-feature-flags/get-flag-list-of-an-environment.js)` to list all feature flags in a given project and environment. 
+Use `[list feature flags script](./list-feature-flags/script.js)` to list all feature flags in a given project and environment. 
 
 See detailed instructions in the `[list feature flags instruction](./list-feature-flags/instruction.md)` file.
 
-## Create a new feature flag
+## Enable and Disable a Feature Flag
 
-Use `[create feature flag script](./create-feature-flag.js)` to create a new feature flag in a given project and environment.
+Use `./enable-disable-feature-flag/script.js` to disable or enable a feature flag in a given project and environment.
 
-Check detailed instructions in the `[create feature flag script](./create-feature-flag.js)` file.
+See detailed instructions in the `[list feature flags instruction](./enable-disable-feature-flag/instruction.md)` file.
