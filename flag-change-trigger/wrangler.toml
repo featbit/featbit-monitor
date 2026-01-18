@@ -1,0 +1,18 @@
+name = "featbit-monitor"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# Cron trigger - runs every 15 minutes
+[triggers]
+crons = ["*/15 * * * *"]
+
+# Environment variables (non-sensitive)
+[vars]
+FEATBIT_BASE_URL = "https://app-api.featbit.co/api/v1"
+VERIFICATION_TYPE = "default"
+
+# Secrets - set using command: wrangler secret put <KEY>
+# wrangler secret put FEATBIT_ENV_ID
+# wrangler secret put FEATBIT_PERSONAL_TOKEN
+# wrangler secret put VERIFICATION_BASE_URL
+# wrangler secret put FEISHU_WEBHOOK_URL

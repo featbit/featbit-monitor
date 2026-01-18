@@ -1,0 +1,24 @@
+{
+  "name": "featbit-monitor",
+  "version": "1.0.0",
+  "description": "FeatBit Feature Flag Monitor - Cloudflare Worker",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "keywords": [
+    "cloudflare",
+    "worker",
+    "featbit",
+    "feature-flags",
+    "cron"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

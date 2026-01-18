@@ -1,0 +1,7 @@
+FEATBIT_ENV_ID=your-environment-id
+FEATBIT_PERSONAL_TOKEN=your-personal-token
+
+VERIFICATION_BASE_URL=https://your-verification-endpoint.com
+VERIFICATION_TYPE=default
+
+FEISHU_WEBHOOK_URL=https://open.feishu.cn/open-apis/bot/v2/hook/your-webhook-token
