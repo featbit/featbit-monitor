@@ -92,16 +92,17 @@ export async function executeMonitor(env) {
         `Feature flag '${selectedFlag.key}' status verified successfully. Status matches: ${targetStatus}`
       );
       
-      // Send hourly health report at xx:15-17 window (allows for execution delays)
+      // Send daily health report at 18:00-18:02 UTC window (allows for execution delays)
       const now = new Date();
-      const minutes = now.getMinutes();
-      const shouldSendStatusReport = minutes >= 15 && minutes <= 17;
+      const hours = now.getUTCHours();
+      const minutes = now.getUTCMinutes();
+      const shouldSendStatusReport = hours === 18 && minutes >= 0 && minutes <= 2;
       
       if (shouldSendStatusReport) {
-        console.log('Sending hourly health status report (xx:15-17 window)');
+        console.log('Sending daily health status report (18:00-18:02 UTC window)');
         await sendHealthStatusReport(env);
       } else {
-        console.log('Verification successful, skipping notification (not in hourly report window)');
+        console.log('Verification successful, skipping notification (not in daily report window)');
       }
     } else {
       console.warn(
