@@ -65,7 +65,7 @@ export async function sendMonitoringResult(env, featureFlagKey, targetStatus, to
       verificationSuccess === false ? 'Failed' :
         'Skipped';
 
-  const message = `🔔 Feature Flag Monitor Report
+  const message = `<at user_id="all">所有人</at> 🔔 Feature Flag Monitor Report
 
 Flag Key: ${featureFlagKey}
 Target Status: ${targetStatus}
