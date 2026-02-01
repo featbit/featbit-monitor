@@ -35,13 +35,17 @@ public class FeaturesController : ControllerBase
 
         _logger.LogInformation("Evaluating feature flag {FlagKey} (type: {Type}) for session {SessionId}", flagKey, type, sessionId);
 
-        // Return value based on type
-        return type.ToLower() switch
+        // Evaluate and log value before returning
+        object evaluationValue = type.ToLower() switch
         {
-            "string" => Ok(_fbClient.StringVariation(flagKey, user, defaultValue: "")),
-            "int" => Ok(_fbClient.IntVariation(flagKey, user, defaultValue: 0)),
-            "double" => Ok(_fbClient.DoubleVariation(flagKey, user, defaultValue: 0.0)),
-            _ => Ok(_fbClient.BoolVariation(flagKey, user, defaultValue: false))
+            "string" => _fbClient.StringVariation(flagKey, user, defaultValue: ""),
+            "int" => _fbClient.IntVariation(flagKey, user, defaultValue: 0),
+            "double" => _fbClient.DoubleVariation(flagKey, user, defaultValue: 0.0),
+            _ => _fbClient.BoolVariation(flagKey, user, defaultValue: false)
         };
+
+        _logger.LogInformation("Feature flag {FlagKey} evaluated to: {Value}", flagKey, evaluationValue);
+
+        return Ok(evaluationValue);
     }
 }
